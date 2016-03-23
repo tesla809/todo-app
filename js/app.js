@@ -25,6 +25,20 @@ var createNewTaskElement = function(taskString){
   var deleteButton = document.createElement("button");
   
   //Each element needs modifying
+  checkBox.type = "checkbox";   //.type modifies input to checkbox
+  editInput.type = "text";
+  
+  //edit button is Edit
+  editButton.innerHTML = "Edit";
+  //edit button class name set to edit
+  editButton.className = "edit";
+  //delete button is Delete
+  deleteButton.innerText = "Delete";
+  //delete button class name set to delete
+  deleteButton.className = "delete";
+  
+  //taskString is label's string
+  label.innerText = taskString;
   
   //Each element needs appending in exact as appearing in html
   listItem.appendChild(checkBox);
@@ -43,11 +57,13 @@ var addTask = function(){
   
   //When we click button we create new listItem.
   //Create a new list item for the text #new-task:
-  var listItem = createNewTaskElement("Some New Task");
+  //We send through taskInput's value thru to
+  //createNewTaskElement and result is listItem.
+  var listItem = createNewTaskElement(taskInput.value);
   
   //Append listItem to incompleteTasksHolder
   incompleteTasksHolder.appendChild(listItem);
-  bindTaskEvents(listItem,taskCompleted);
+  bindTaskEvents(listItem, taskCompleted);
 
   //creating and appending code is in two seperate functions
   //seperating concerns to make the code more maintainable and re-able
@@ -80,8 +96,6 @@ var deleteTask = function(){
   
   //Remove the parent list item from ul (grandparent of button, parent of listItem)
   ul.removeChild(listItem);
-  
-  
 };
 
 
@@ -124,7 +138,9 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler){
   editButton.onclick = editTask;
   //bind deleteTask to delete button
   deleteButton.onclick = deleteTask;
-  //bind checkBoxEventHandler to checkbox  
+  //bind checkBoxEventHandler to checkbox
+  //when checkbox state is changed, the checkBoxEventHandler is ran
+  //which runs either the taskComplete or taskIncomplete function
   checkBox.onchange = checkBoxEventHandler;
 };
 
