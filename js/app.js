@@ -64,6 +64,10 @@ var addTask = function(){
   //Append listItem to incompleteTasksHolder
   incompleteTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
+  
+  // after task is added, we are setting it to value of empty string
+  taskInput.value = "";
+  
 
   //creating and appending code is in two seperate functions
   //seperating concerns to make the code more maintainable and re-able
@@ -139,6 +143,15 @@ var taskIncomplete = function(){
 //wiring
 //Set the click handler to the addTask function
 addButton.onclick = addTask;
+
+/*
+var ajaxRequest = function() {
+  console.log("AJAX Request");
+};
+// doesn't preform both tasks.
+//ajaxrequest overrides addTask.
+addButton.onclick = ajaxRequest;
+*/
 
 //binds functions to buttons
 var bindTaskEvents = function(taskListItem, checkBoxEventHandler){
