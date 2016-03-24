@@ -142,17 +142,6 @@ var taskIncomplete = function(){
 
 //wiring
 //Set the click handler to the addTask function
-addButton.onclick = addTask;
-
-/*
-var ajaxRequest = function() {
-  console.log("AJAX Request");
-};
-// doesn't preform both tasks.
-//ajaxrequest overrides addTask.
-addButton.onclick = ajaxRequest;
-*/
-
 //binds functions to buttons
 var bindTaskEvents = function(taskListItem, checkBoxEventHandler){
   console.log("bind list item events");
@@ -170,6 +159,19 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler){
   //which runs either the taskComplete or taskIncomplete function
   checkBox.onchange = checkBoxEventHandler;
 };
+
+//ajax request
+var ajaxRequest = function() {
+  console.log("AJAX Request");
+};
+// addButton.addEventListener("click", addTask) replaces
+// addButton.onclick = ajaxRequest;
+// addEventListener is a better way trigger events
+// allows for more than one event to happen at the same time w/o overriding
+//So, here two events will be triggered when click event on add button happens
+addButton.addEventListener("click", addTask);
+addButton.addEventListener("click", ajaxRequest);
+
 
 //cycle over incompleteTasksHolder ul list items
 //to bind this to all children of incompleteTasksHolder
