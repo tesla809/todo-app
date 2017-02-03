@@ -1,6 +1,8 @@
+// add use strict
+// refactor into es6
+
 //Problem: User interaction does not provide desired results
 //Solution: Add interactivity so the user can manage daily tasks
-
 //variables
 var taskInput = document.getElementById("new-task"); //new-task
 var addButton = document.getElementsByTagName("button")[0]; //first-button
